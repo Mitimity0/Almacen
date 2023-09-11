@@ -1,0 +1,122 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bienvenido</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<nav class="navbar sticky-top navbar-light bg-light px-3">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Filtros</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link" href="#">Features</a>
+                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+<!--  Listado de productos  -->
+<article class="py-3 bg-white">
+    <div class="container album py-5">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            @{ for (int i = 0; i < 20; i++)
+                {
+                    <!--  Carta  -->
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <!-- Imagen de la tarjeta -->
+                            <svg width="100%" height="225" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100%" height="100%" fill="#55595c" />
+                                <text x="35%" y="50%" fill="#eceeef">Imagen del producto</text>
+                            </svg>
+                            <!-- Contenido de la tarjeta -->
+                            <div class="card-body ">
+                                <p class="card-text">Nombre</p>
+                                <small class="text-muted">Presentación: resentacion</small>
+                                <div class="pagination justify-content-end">
+                                    <button type="button" class="py-2 btn btn-sm btn-outline-secondary" data-bs-toggle="offcanvas" data-bs-target="#SeccionCarrito" aria-controls="offcanvasRight">Agregar al carrito</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <!-- Navegación de paginación -->
+    <nav class="p-5">
+        <ul class="pagination justify-content-center">
+            <li class="page-item @(ViewBag.Pagina == 1 ? "disabled" : "")">
+                <a class="page-link" href="" aria-label="Anterior">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            @{
+                int totalPages = 3;
+                for (int i = 1; i <= totalPages; i++)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="">@i</a>
+                    </li>
+                }
+            }
+            <li class="page-item">
+                <a class="page-link" href="" aria-label="Siguiente">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</article>
+
+<!--  Seccion carrito  -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="SeccionCarrito" aria-labelledby="offcanvasRightLabel">
+    <!--  titulo  -->
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasRightLabel">Carrito</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <!--  Contenido  -->
+    <div class="offcanvas-body">
+        <!--  Contenido del carrito  -->
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <!--  <img src="..." class="img-fluid rounded-start" alt="...">  -->
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img"
+                         aria-label="Placeholder: Imagen Referencial" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#55595c" />
+                        <text fill="#eceeef" dy=".3em"></text>
+                    </svg>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Nombre del articulo</h5>
+                        <p class="card-text">Descripcion</p>
+                        <p class="card-text">Cantidad</p>
+                        <input class="form-control" type="number" min="0" max="10" />
+                        <p class="card-text"><small class="text-muted">Precio acumulado</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  Final  -->
+    <div class="offcanvas">
+        <small class="text-muted">Total a pagar: </small></p>
+        <button class="col-md-4 btn btn-primary">Ir a pagar</button>
+    </div>
+</div>
